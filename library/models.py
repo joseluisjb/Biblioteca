@@ -1,7 +1,8 @@
 from django.db import models
+from .validators import *
 
 class Autor(models.Model):
-    nombre = models.CharField(max_length=100)
+    nombre = models.CharField(validators=[validate_blank])
     nacionalidad = models.CharField(max_length=100)
 
     def __str__(self):
@@ -11,7 +12,7 @@ class Libro(models.Model):
     titulo = models.CharField(max_length=100)
     autor = models.ForeignKey(Autor, on_delete=models.CASCADE, related_name='libros')
     fecha_publicacion = models.DateField()
-    resumen = models.TextField()
+    resumen = models.TextField(validators=[validate_length])
 
     def __str__(self):
         return self.titulo
@@ -19,7 +20,7 @@ class Libro(models.Model):
 class Resenia(models.Model):
     libro = models.ForeignKey(Libro, on_delete=models.CASCADE, related_name='resenas')
     texto = models.TextField()
-    calificacion = models.IntegerField()
+    calificacion = models.IntegerField(validators=[validate_range])
     fecha = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
