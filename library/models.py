@@ -1,5 +1,6 @@
 from django.db import models
 from .validators import *
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Autor(models.Model):
     nombre = models.CharField(validators=[validate_blank])
@@ -22,6 +23,7 @@ class Resenia(models.Model):
     texto = models.TextField()
     calificacion = models.IntegerField(validators=[validate_range])
     fecha = models.DateTimeField(auto_now_add=True)
+    rating = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(5.0)])
 
     def __str__(self):
         return f"{self.libro.titulo} - {self.calificacion}/5"
