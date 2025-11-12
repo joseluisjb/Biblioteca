@@ -12,12 +12,12 @@ class AutorAdmin(admin.ModelAdmin):
 
 @admin.register(Libro)
 class LibroAdmin(admin.ModelAdmin):
-    list_display = ('titulo', 'autor', 'fecha_publicacion', 'resumen')
-    search_fields = ('titulo', 'autor')
+    list_display = ('id','titulo', 'autor', 'fecha_publicacion', 'resumen')
+    search_fields = ('titulo', 'autor__nombre')
     list_filter = ('titulo', 'fecha_publicacion')
 
 @admin.register(Resenia)
 class ReseniaAdmin(admin.ModelAdmin):
-    list_display = ('libro', 'texto', 'calificacion', 'fecha')
+    list_display = ('libro', 'texto', 'calificacion', 'fecha', 'rating')
     search_fields = ('libro', 'calificacion')
     list_filter = ('calificacion',)

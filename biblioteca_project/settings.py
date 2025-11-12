@@ -125,6 +125,12 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
+    # Agregamos paginación, es decir, al consumir la API no se mostrarán todos los Objetos de una clase
+    # sino que estos se organizarán en Páginas
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    # Definimos que cada página de datos tenga 5 objetos máximo, si la petición al API tiene más de 5 objetos
+    # se crea otra página con los otros, las páginas se acceden con /?page=n, donde n es el número de la página
+    'PAGE_SIZE': 5,
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
     ),
