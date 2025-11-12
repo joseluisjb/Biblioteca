@@ -25,6 +25,8 @@ Activar el entorno:
 
 **4. Configurar la base de datos**
 
+`python manage.py makemigrations`
+
 `python manage.py migrate`
 
 **5. Crear un superusuario para el panel de administración**
